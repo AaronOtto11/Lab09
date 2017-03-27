@@ -60,8 +60,8 @@ void Sort<T>::_quickSort(T** items, int first, int last, int (*compare) (T* one,
 
 	  int s1= partition(items,first, last, compare);
 
-	  _quickSort(items, s1-1,last, compare);
-	  _quickSort(items, first,s1+1, compare);
+	  _quickSort(items, first,s1-1, compare);
+	  _quickSort(items, s1+1,last, compare);
    }  
 }  
 
@@ -83,11 +83,11 @@ int Sort<T>::partition(T** items, int first, int last, int (*compare) (T* one, T
    choosePivot(items, first, last); 
 
 	T* pivot=items[first];
-   int comp_res = (*compare) (comp, pivot);
 
    for (int i = first+1; i <= last; i++)
    {
-	   comp = items[i];
+
+	  int comp_res = (*compare) (items[1], pivot);
 
 	  if(comp_res < 0)
 	  {
@@ -115,9 +115,9 @@ void Sort<T>::choosePivot(T** items, int first, int last)
    //you will need to swap
    int midPoint = first + (last-first/2);
 
-	T* a_thing= items[midPoint];
-	items[midPoint]=items[first];
-	items[first]=a_thing;
+	T* a_thing= items[first];
+	items[first]=items[midPoint];
+	items[midPoint]=a_thing;
 	
 }
 
